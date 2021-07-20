@@ -47,11 +47,11 @@ class NDEFRecordFlags {
   int encode() {
     assert(0 <= TNF && TNF <= 7);
     return (MB.toInt() << 7) |
-        (ME.toInt() << 6) |
+        (ME.toInt() << 6) |// 移位运算来进行加密？
         (CF.toInt() << 5) |
         (SR.toInt() << 4) |
         (IL.toInt() << 3) |
-        (TNF & 7);
+        (TNF & 7);//此处为什么TNF要和7互余运算呢？
   }
 
   void decode(int data) {
