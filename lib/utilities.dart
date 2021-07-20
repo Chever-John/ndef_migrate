@@ -144,7 +144,7 @@ extension BigIntConvert on BigInt {
 
 /// Extension to convert bool to int
 extension BoolConvert on bool {
-  int toInt() => ByteUtils.boolToInt(thi  s);
+  int toInt() => ByteUtils.boolToInt(this);
 }
 
 /// byte stream utility class for decoding
