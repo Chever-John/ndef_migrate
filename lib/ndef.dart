@@ -21,7 +21,8 @@ import 'utilities.dart';
 /// Decode raw NDEF messages (containing at least one [NDEFRecord]) from byte array.
 List<NDEFRecord> decodeRawNdefMessage(Uint8List data,
     {var typeFactory = NDEFRecord.defaultTypeFactory}) {
-  var records = new List<NDEFRecord>();
+  // var records = new List<NDEFRecord>();
+  var records = <NDEFRecord>[];
   var stream = new ByteStream(data);
   while (!stream.isEnd()) {
     var record = NDEFRecord.decodeStream(stream, typeFactory);
@@ -39,9 +40,9 @@ List<NDEFRecord> decodeRawNdefMessage(Uint8List data,
 
 /// Decode a NDEF record, providing its parts separately.
 /// This is most useful in mobile envrionment because the APIs will give you these information in a separate manner.
-NDEFRecord decodePartialNdefMessage(
+NDEFRecord? decodePartialNdefMessage(
     TypeNameFormat tnf, Uint8List type, Uint8List payload,
-    {Uint8List id}) {
+    {required Uint8List id}) {
   var decoded = NDEFRecord.doDecode(tnf, type, payload, id: id);
   return decoded;
 }
@@ -63,7 +64,8 @@ Uint8List encodeNdefMessage(List<NDEFRecord> records,
     records.last.flags.ME = true;
   }
 
-  var encoded = new List<int>();
+  // var encoded = new List<int>();
+  var encoded = <int>[];
   records.forEach((r) {
     encoded.addAll(r.encode());
   }); 

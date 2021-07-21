@@ -45,13 +45,13 @@ class NDEFRecordFlags {
   }
 
   int encode() {
-    assert(0 <= TNF! && TNF! <= 7);
+    assert(0 <= TNF && TNF<= 7);
     return (MB!.toInt() << 7) |
         (ME!.toInt() << 6) |
         (CF!.toInt() << 5) |
-        (SR!.toInt() << 4) |
-        (IL!.toInt() << 3) |
-        (TNF! & 7);
+        (SR.toInt() << 4) |
+        (IL.toInt() << 3) |
+        (TNF & 7);
   }
 
   void decode(int data) {
@@ -105,7 +105,7 @@ class NDEFRecord {
   static const TypeNameFormat? classTnf = null;
 
   TypeNameFormat? get tnf {
-    return TypeNameFormat.values[flags.TNF!];
+    return TypeNameFormat.values[flags.TNF];
   }
 
   set tnf(TypeNameFormat? tnf) {
@@ -180,12 +180,12 @@ class NDEFRecord {
   String toString() {
     var str = "Record: ";
     str += basicInfoString!;
-    str += "payload=${payload.toHexString()}";
+    str += "payload=${payload!.toHexString()}";
     return str;
   }
 
-  Uint8List? id;
-  Uint8List payload;
+  late Uint8List? id;
+  late Uint8List? payload;
   late NDEFRecordFlags flags;
 
   NDEFRecord(
@@ -272,9 +272,10 @@ class NDEFRecord {
   static NDEFRecord decodeStream(ByteStream stream, TypeFactory typeFactory) {
     var flags = new NDEFRecordFlags(data: stream.readByte());
 
-    num typeLength = stream.readByte();
-    num payloadLength;
-    num idLength = 0;
+    //TODO: Convert "num" to "int" for null-safety
+    int typeLength = stream.readByte();
+    int payloadLength;
+    int idLength = 0;
     if (flags.SR) {
       payloadLength = stream.readByte();
     } else {
@@ -307,7 +308,7 @@ class NDEFRecord {
 
     var decoded = doDecode(typeNameFormat, type, payload,
         id: id, typeFactory: typeFactory);
-    decoded.flags = flags;
+    decoded!.flags = flags;
     return decoded;
   }
 
@@ -321,7 +322,8 @@ class NDEFRecord {
       throw "Payload is null, please set parameters or set payload directly before encode";
     }
 
-    var encoded = new List<int>();
+    // var encoded = new List<int>();
+    var encoded = <int>[];
 
     // check and canonicalize
     if (this.id == null) {
@@ -330,7 +332,7 @@ class NDEFRecord {
       flags.IL = true;
     }
 
-    if (payload.length < 256) {
+    if (payload!.length < 256) {
       flags.SR = true;
     } else {
       flags.SR = false;
@@ -350,7 +352,7 @@ class NDEFRecord {
     var encodedPayload = payload;
 
     // payload length
-    if (encodedPayload.length < 256) {
+    if (encodedPayload!.length < 256) {
       encoded += [encodedPayload.length];
     } else {
       encoded += [
