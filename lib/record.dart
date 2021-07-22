@@ -104,12 +104,12 @@ class NDEFRecord {
   /// Predefined TNF of a specific record type.
   static const TypeNameFormat? classTnf = null;
 
-  TypeNameFormat? get tnf {
-    return TypeNameFormat.values[flags.TNF];
+  TypeNameFormat get tnf {
+    return TypeNameFormat.values[flags!.TNF];
   }
 
   set tnf(TypeNameFormat? tnf) {
-    flags.TNF = TypeNameFormat.values.indexOf(tnf!);
+    flags!.TNF = TypeNameFormat.values.indexOf(tnf!);
   }
 
   Uint8List? encodedType;
@@ -146,16 +146,16 @@ class NDEFRecord {
     if (decodedType == null) {
       return null;
     }
-    return tnfString![flags.TNF]! + decodedType!;
+    return tnfString![flags!.TNF]! + decodedType!;
   }
 
   /// Hex String of id, return "(empty)" when the id bytes is null
-  String get idString {
+  String? get idString {
     return id == null ? "(empty)" : id!.toHexString();
   }
 
-  set idString(String value) {
-    id = latin1.encode(value);
+  set idString(String? value) {
+    id = latin1.encode(value!);
   }
 
   static const int? classMinPayloadLength = 0;
@@ -186,13 +186,13 @@ class NDEFRecord {
 
   late Uint8List? id;
   late Uint8List? payload;
-  late NDEFRecordFlags flags;
+  late NDEFRecordFlags? flags;
 
   NDEFRecord(
       { TypeNameFormat? tnf, Uint8List? type, Uint8List? id, Uint8List? payload}) {
     flags = new NDEFRecordFlags();
     if (tnf == null) {
-      flags.TNF = TypeNameFormat.values.indexOf(this.tnf);
+      flags!.TNF = TypeNameFormat.values.indexOf(this.tnf);
     } else {
       if (this.tnf != TypeNameFormat.empty) {
         throw "TNF has not been set in subclass of Record";
@@ -327,19 +327,19 @@ class NDEFRecord {
 
     // check and canonicalize
     if (this.id == null) {
-      flags.IL = false;
+      flags!.IL = false;
     } else {
-      flags.IL = true;
+      flags!.IL = true;
     }
 
     if (payload!.length < 256) {
-      flags.SR = true;
+      flags!.SR = true;
     } else {
-      flags.SR = false;
+      flags!.SR = false;
     }
 
     // flags
-    var encodedFlags = flags.encode();
+    var encodedFlags = flags!.encode();
     encoded.add(encodedFlags);
 
     // type length
