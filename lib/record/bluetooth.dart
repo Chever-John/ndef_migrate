@@ -783,7 +783,7 @@ class BluetoothEasyPairingRecord extends BluetoothRecord {
   EPAddress? address;
 
   DeviceClass? get deviceClass {
-    return new DeviceClass.fromBytes(attributes![EIRType.ClassOfDevice]!);
+    return new DeviceClass.fromBytes(attributes[EIRType.ClassOfDevice]!);
   }
 
   set deviceClass(DeviceClass? dc) {

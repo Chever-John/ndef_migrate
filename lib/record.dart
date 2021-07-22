@@ -41,7 +41,7 @@ class NDEFRecordFlags {
   int TNF = 0;
 
   NDEFRecordFlags({int? data}) {
-    decode(data!);
+    decode(data);
   }
 
   int encode() {
@@ -54,7 +54,7 @@ class NDEFRecordFlags {
         (TNF & 7);
   }
 
-  void decode(int data) {
+  void decode(int? data) {
     if (data != null) {
       if (data < 0 || data >= 256) {
         throw "Data to decode in flags must be in [0, 256), got $data";

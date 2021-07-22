@@ -53,7 +53,7 @@ void main() {
   // also you can decode by providing id, type and payload separately (normally from phone API)
   print('===================');
   var partiallyDecodedUrlRecord = ndef.decodePartialNdefMessage(
-      ndef.TypeNameFormat.nfcWellKnown, utf8.encode("U"), origPayload,
+      ndef.TypeNameFormat.nfcWellKnown, utf8.encode("U") as Uint8List, origPayload,
       id: Uint8List.fromList([0x1, 0x2]));
   assert(partiallyDecodedUrlRecord is ndef.UriRecord);
   print('partially decoded record: ' +
