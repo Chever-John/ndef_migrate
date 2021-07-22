@@ -9,9 +9,9 @@ class ByteUtils {
     return value ? 1 : 0;
   }
 
-  static int bytesToInt(Uint8List bytes,
+  static int bytesToInt(Uint8List? bytes,
       {Endianness endianness = Endianness.Big}) {
-    var stream = ByteStream(bytes);
+    var stream = ByteStream(bytes!);
     return stream.readInt(stream.length, endianness: endianness);
   }
 

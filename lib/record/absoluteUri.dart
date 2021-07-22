@@ -9,7 +9,7 @@ class AbsoluteUriRecord extends NDEFRecord {
     return classTnf;
   }
 
-  AbsoluteUriRecord({required String uri, required Uint8List id}) : super(id: id) {
+  AbsoluteUriRecord({String? uri, Uint8List? id}) : super(id: id) {
     if (uri != null) {
       this.uri = uri;
     }
