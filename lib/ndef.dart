@@ -22,6 +22,7 @@ import 'utilities.dart';
 
 /// Decode raw NDEF messages (containing at least one [NDEFRecord]) from byte array.
 /// 格式是Uint8List，这是一个在dart中用来高效处理二进制数据的数据类型。
+/// 对了，Message中应该至少包括一个Record(>=1)
 List<NDEFRecord> decodeRawNdefMessage(Uint8List data,
     {var typeFactory = NDEFRecord.defaultTypeFactory}) {
   // var records = new List<NDEFRecord>();
