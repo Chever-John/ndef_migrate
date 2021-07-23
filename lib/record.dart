@@ -16,7 +16,21 @@ import 'record/handover.dart';
 
 /// Represent the flags in the header of a NDEF record.
 class NDEFRecordFlags {
-  /// Message Begin */
+  /// Message Begin
+  /// The MB flag is a 1-bit field that
+  /// when set indicates the start of an NDEF message (see section 2.3.1).
+  ///
+  /// Section 2.3.1
+  /// An NDEF message is composed of one or more NDEF records.
+  /// The first record in a message is marked with the MB (Message Begin) flag
+  /// set and the last record in the message is marked with the ME (Message End) flag
+  /// set (see sections 3.2.1 and 3.2.2).
+  /// The minimum message length is one record which is achieved
+  /// by setting both the MB and the ME flag in the same record.
+  ///
+  /// Attention!!!
+  ///   1.NDEF messages MUST NOT overlap; that is, the MB and the ME flags
+  ///   MUST NOT be used to nest NDEF messages.*/
   // ignore: non_constant_identifier_names
   bool? MB = false;
 
