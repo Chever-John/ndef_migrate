@@ -1,4 +1,5 @@
 library ndef;
+// 此处定义库的名字为ndef
 
 // base class
 export 'record.dart';
