@@ -61,4 +61,6 @@ Refer to the [documentation](https://pub.dev/documentation/ndef/) for more infor
 2. add class types
 3. add test
 
-07/19: document of nfc specification
+Actually, I finish the first version yesterday. 
+Well, it's not a good job!
+Come on!
