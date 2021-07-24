@@ -53,7 +53,10 @@ class NDEFRecordFlags {
   // ignore: non_constant_identifier_names
   bool? ME = false;
 
-  /// Chunk Flag */
+  /// Chunk Flag
+  /// The CF flag is a 1-bit field indicating that this is either
+  /// the first record chunk or a middle record chunk of a chunked payload
+  /// */
   // ignore: non_constant_identifier_names
   bool? CF = false;
 
