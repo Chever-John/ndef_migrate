@@ -184,7 +184,7 @@ class NDEFRecord {
   }
 
   /// Hex String of id, return "(empty)" when the id bytes is null
-  String? get idString {
+  String get idString {
     return id == null ? "(empty)" : id!.toHexString();
   }
 
@@ -195,7 +195,7 @@ class NDEFRecord {
   static const int classMinPayloadLength = 0;
   static const int? classMaxPayloadLength = null;
 
-  int? get minPayloadLength {
+  int get minPayloadLength {
     return classMinPayloadLength;
   }
 
@@ -203,7 +203,7 @@ class NDEFRecord {
     return classMaxPayloadLength;
   }
 
-  String? get basicInfoString {
+  String get basicInfoString {
     var str = "id=$idString ";
     str += "typeNameFormat=$tnf ";
     str += "type=$decodedType ";
@@ -213,7 +213,7 @@ class NDEFRecord {
   @override
   String toString() {
     var str = "Record: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "payload=${payload!.toHexString()}";
     return str;
   }
@@ -284,11 +284,11 @@ class NDEFRecord {
   }
 
   /// Decode a [NDEFRecord] record from raw data.
-  static NDEFRecord? doDecode(
+  static NDEFRecord doDecode(
       TypeNameFormat? tnf, Uint8List? type, Uint8List? payload,
       { Uint8List? id, TypeFactory? typeFactory = NDEFRecord.defaultTypeFactory}) {
     NDEFRecord? record = typeFactory!(tnf!, utf8.decode(type!));
-    if (payload!.length < record!.minPayloadLength!) {
+    if (payload!.length < record!.minPayloadLength) {
       throw "Payload length must be >= ${record.minPayloadLength}";
     }
     if (record.maxPayloadLength != null &&
@@ -342,7 +342,7 @@ class NDEFRecord {
 
     var decoded = doDecode(typeNameFormat, type, payload,
         id: id, typeFactory: typeFactory);
-    decoded!.flags = flags;
+    decoded.flags = flags;
     return decoded;
   }
 
