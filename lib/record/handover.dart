@@ -335,8 +335,9 @@ class HandoverRecord extends WellKnownRecord {
 
   Uint8List? get payload {
     var data = encodeNdefMessage(allRecordList);
-    var payload = [version.value] + data;
-    return Uint8List.fromList(payload as List<int>);
+    /// 直接在后边进行了cast的强制转换
+    List<int>? payload = ([version.value] + data).cast();
+    return Uint8List.fromList(payload);
   }
 
   set payload(Uint8List? payload) {
@@ -681,9 +682,9 @@ class HandoverCarrierRecord extends WellKnownRecord {
 
   Uint8List? get payload {
     var carrierTypeBytes = utf8.encode(carrierType!);
-    var payload =
-        [_carrierTnf, carrierTypeBytes.length] + carrierTypeBytes + carrierData;
-    return Uint8List.fromList(payload as List<int>);
+    List<int>? payload =
+        ([_carrierTnf, carrierTypeBytes.length] + carrierTypeBytes + carrierData).cast();
+    return Uint8List.fromList(payload);
   }
 
   set payload(Uint8List? payload) {

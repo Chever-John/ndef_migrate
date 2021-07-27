@@ -93,7 +93,7 @@ class DeviceInformationRecord extends WellKnownRecord {
     if (!(vendorName != null && modelName != null)) {
       throw "Decoding requires the manufacturer and model name TLVs";
     }
-    List<int?> payload = [];
+    List<int>? payload = [];
 
     // known data
     _addEncodedData(vendorName, 0, payload);
@@ -111,7 +111,7 @@ class DeviceInformationRecord extends WellKnownRecord {
       payload.add(valueBytes.length);
       payload.addAll(valueBytes);
     }
-    return new Uint8List.fromList(payload as List<int>);
+    return new Uint8List.fromList(payload);
   }
 
   set payload(Uint8List? payload) {
