@@ -46,9 +46,8 @@ class AlternativeCarrierRecord extends WellKnownRecord {
     if (carrierDataReference != null) {
       this.carrierDataReference = carrierDataReference;
     }
-    this.auxDataReferenceList = auxDataReferenceList == null
-        ? <Uint8List>[]
-        : auxDataReferenceList;
+    this.auxDataReferenceList =
+        auxDataReferenceList == null ? <Uint8List>[] : auxDataReferenceList;
   }
 
   int get carrierPowerStateIndex {
@@ -207,22 +206,22 @@ class ErrorRecord extends WellKnownRecord {
     return classMinPayloadLength;
   }
 
-  int? get errorNum {
+  int get errorNum {
     return _errorNum;
   }
 
-  set errorNum(int? errorNum) {
+  set errorNum(int errorNum) {
     if (errorNum == 0) {
       throw "Error reason must not be 0";
     }
-    _errorNum = errorNum!;
+    _errorNum = errorNum;
   }
 
   /// A read-only description of error reason and error data
   String get errorString {
-    if (errorNum! > 0 && errorNum! <= 3) {
+    if (errorNum > 0 && errorNum <= 3) {
       var errorDataInt = errorData.toInt();
-      return errorStringMap[errorNum! - 1].replaceFirst('X', '$errorDataInt');
+      return errorStringMap[errorNum - 1].replaceFirst('X', '$errorDataInt');
     } else {
       var errorDataString = errorData.toHexString();
       return "Reason $errorNum Data $errorDataString";
@@ -230,8 +229,8 @@ class ErrorRecord extends WellKnownRecord {
   }
 
   ErrorReason get errorReason {
-    if (errorNum! >= 1 && errorNum! <= 3) {
-      return ErrorReason.values[errorNum! - 1];
+    if (errorNum >= 1 && errorNum <= 3) {
+      return ErrorReason.values[errorNum - 1];
     } else {
       return ErrorReason.other;
     }
@@ -243,7 +242,7 @@ class ErrorRecord extends WellKnownRecord {
 
   Uint8List? get payload {
     var payload = [errorNum] + errorData;
-    return new Uint8List.fromList(payload as List<int>);
+    return new Uint8List.fromList(payload);
   }
 
   set payload(Uint8List? payload) {
@@ -668,15 +667,15 @@ class HandoverCarrierRecord extends WellKnownRecord {
   String? carrierType;
   late Uint8List carrierData;
 
-  TypeNameFormat? get carrierTnf {
+  TypeNameFormat get carrierTnf {
     return TypeNameFormat.values[_carrierTnf!];
   }
 
-  set carrierTnf(TypeNameFormat? carrierTnf) {
-    _carrierTnf = TypeNameFormat.values.indexOf(carrierTnf!);
+  set carrierTnf(TypeNameFormat carrierTnf) {
+    _carrierTnf = TypeNameFormat.values.indexOf(carrierTnf);
   }
 
-  String? get carrierFullType {
+  String get carrierFullType {
     return NDEFRecord.tnfString[_carrierTnf!] + carrierType!;
   }
 
