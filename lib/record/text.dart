@@ -30,7 +30,7 @@ class TextRecord extends WellKnownRecord {
     return str;
   }
 
-  TextEncoding? encoding;
+  late TextEncoding encoding;
   String? _language, text;
 
   TextRecord(
