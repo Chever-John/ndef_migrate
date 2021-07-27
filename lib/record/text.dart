@@ -23,7 +23,7 @@ class TextRecord extends WellKnownRecord {
   @override
   String toString() {
     var str = "TextRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "encoding=$encodingString ";
     str += "language=$language ";
     str += "text=$text";

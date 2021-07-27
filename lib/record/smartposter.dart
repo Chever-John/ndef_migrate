@@ -31,7 +31,7 @@ class ActionRecord extends WellKnownRecord {
   @override
   String toString() {
     var str = "ActionRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "action=$action";
     return str;
   }
@@ -77,7 +77,7 @@ class SizeRecord extends WellKnownRecord {
   @override
   String toString() {
     var str = "SizeRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "size=$_size";
     return str;
   }
@@ -121,7 +121,7 @@ class TypeRecord extends WellKnownRecord {
   @override
   String toString() {
     var str = "TypeRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "type=$typeInfo";
     return str;
   }
@@ -150,7 +150,7 @@ class SmartPosterRecord extends WellKnownRecord {
   @override
   String toString() {
     var str = "SmartRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "titleRecords=$titleRecords ";
     str += "uriRecords=$uriRecords ";
     str += "actionRecords=$actionRecords ";
