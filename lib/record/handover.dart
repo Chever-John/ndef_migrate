@@ -25,7 +25,7 @@ class AlternativeCarrierRecord extends WellKnownRecord {
   @override
   String toString() {
     var str = "AlternativeCarrierRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "carrierPowerState=$carrierPowerState ";
     str += "carrierDataReference=$carrierDataReference ";
     str += "auxDataReferences=$auxDataReferenceList";
@@ -123,7 +123,7 @@ class CollisionResolutionRecord extends WellKnownRecord {
   @override
   String toString() {
     var str = "CollisionResolutionRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "randomNumber=$randomNumber";
     return str;
   }
@@ -184,7 +184,7 @@ class ErrorRecord extends WellKnownRecord {
   @override
   String toString() {
     var str = "ErrorRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "error=$errorString";
     return str;
   }
@@ -276,7 +276,7 @@ class HandoverRecord extends WellKnownRecord {
   @override
   String toString() {
     var str = "HandoverRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "version=${version.string} ";
     str += "alternativeCarrierRecords=$alternativeCarrierRecordList ";
     str += "unknownRecords=$unknownRecordList";
@@ -363,7 +363,7 @@ class HandoverRequestRecord extends HandoverRecord {
   @override
   String toString() {
     var str = "HandoverRequestRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "version=${version.string} ";
     str += "alternativeCarrierRecords=$alternativeCarrierRecordList ";
     str += "collisionResolutionRecords=$collisionResolutionRecordList ";
@@ -481,7 +481,7 @@ class HandoverSelectRecord extends HandoverRecord {
   @override
   String toString() {
     var str = "HandoverSelectRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "version=${version.value} ";
     str += "alternativeCarrierRecords=$alternativeCarrierRecordList ";
     str += "errorRecords=$errorRecordList ";
@@ -585,7 +585,7 @@ class HandoverMediationRecord extends HandoverRecord {
   @override
   String toString() {
     var str = "HandoverMediationRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "version=${version.value} ";
     str += "alternativeCarrierRecords=$alternativeCarrierRecordList ";
     str += "unknownRecords=$unknownRecordList";
@@ -611,7 +611,7 @@ class HandoverInitiateRecord extends HandoverRecord {
   @override
   String toString() {
     var str = "HandoverInitiateRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "version=${version.value} ";
     str += "alternativeCarrierRecords=$alternativeCarrierRecordList ";
     str += "unknownRecords=$unknownRecordList";
@@ -643,7 +643,7 @@ class HandoverCarrierRecord extends WellKnownRecord {
   @override
   String toString() {
     var str = "HandoverCarrierRecord: ";
-    str += basicInfoString!;
+    str += basicInfoString;
     str += "carrierType=$carrierType ";
     str += "carrierData=$carrierData";
     return str;
@@ -677,7 +677,7 @@ class HandoverCarrierRecord extends WellKnownRecord {
   }
 
   String? get carrierFullType {
-    return NDEFRecord.tnfString![_carrierTnf!]! + carrierType!;
+    return NDEFRecord.tnfString[_carrierTnf!] + carrierType!;
   }
 
   Uint8List? get payload {
