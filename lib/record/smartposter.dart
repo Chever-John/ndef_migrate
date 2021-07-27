@@ -167,7 +167,7 @@ class SmartPosterRecord extends WellKnownRecord {
   late List<SizeRecord> _sizeRecords;
   late List<TypeRecord> _typeRecords;
 
-  late List<String> _titleLanguages;
+  late List<String?> _titleLanguages;
 
   void _init() {
     _titleRecords = <TextRecord>[];
@@ -342,8 +342,8 @@ class SmartPosterRecord extends WellKnownRecord {
     }
   }
 
-  Map<String, String?> get titles {
-    var titles = Map<String, String?>();
+  Map<String?, String?> get titles {
+    var titles = Map<String?, String?>();
     for (var r in _titleRecords) {
       titles[r.language] = r.text;
     }

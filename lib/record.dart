@@ -219,7 +219,7 @@ class NDEFRecord {
   }
 
   late Uint8List? id;
-  late Uint8List? payload;
+  Uint8List? payload;
   late NDEFRecordFlags flags;
 
   NDEFRecord(

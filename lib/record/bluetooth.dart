@@ -886,17 +886,18 @@ class BluetoothEasyPairingRecord extends BluetoothRecord {
 
   Uint8List get payload {
     // var data = new List<int>();
-    var data = <int?>[];
+    List<int?> data = <int?>[];
     for (var e in attributes.entries) {
       data.add(e.value.length + 1);
       data.add(EIR.typeNumMap[e.key]);
       data.addAll(e.value);
     }
-    var payload = ByteUtils.intToBytes(
+    List<int>? payload = ByteUtils.intToBytes(
             data.length + address!.bytes.length + 2, 2,
             endianness: Endianness.Little) +
-        address!.bytes +
-        (data as List<int>);
+        address!.bytes + data.cast();
+    /// 这边强制将data转换了一下原先的data内部的值可能为null，因为我看了逻辑后发现，
+    /// 应该不会在内部存在空的情况，所以，我这边还是选择data内部是非空的判定。
     return new Uint8List.fromList(payload);
   }
 
