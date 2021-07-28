@@ -31,6 +31,8 @@ class TextRecord extends WellKnownRecord {
   }
 
   late TextEncoding encoding;
+  // if '_language' field must be late, the get function in smartposter.dart
+  // will has problems.
   String? _language, text;
 
   TextRecord(
