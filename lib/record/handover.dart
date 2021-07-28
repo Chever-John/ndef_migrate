@@ -127,7 +127,7 @@ class CollisionResolutionRecord extends WellKnownRecord {
     return str;
   }
 
-  late int? _randomNumber;
+  int? _randomNumber;
 
   CollisionResolutionRecord({int? randomNumber}) {
     if (randomNumber != null) {
