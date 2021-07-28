@@ -40,8 +40,7 @@ class NDEFRecordFlags {
   // ignore: non_constant_identifier_names
   int TNF = 0;
 
-  NDEFRecordFlags({int?
-  data}) {
+  NDEFRecordFlags({int? data}) {
     decode(data);
   }
 
@@ -108,11 +107,14 @@ class NDEFRecord {
   TypeNameFormat get tnf {
     return TypeNameFormat.values[flags.TNF];
   }
-
-  set tnf(TypeNameFormat? tnf) {
-    flags.TNF = TypeNameFormat.values.indexOf(tnf!);
+  // Chever John: After study the feature of the tnf, I make a choice
+  // that tnf must be non-nullable.
+  set tnf(TypeNameFormat tnf) {
+    flags.TNF = TypeNameFormat.values.indexOf(tnf);
   }
 
+  // Chever John: Because of the analyse of "type", have the choice
+  // that encodedType must be nullable(type is nullable).
   Uint8List? encodedType;
 
   set decodedType(String? decodedType) {
@@ -125,7 +127,8 @@ class NDEFRecord {
     }
     return utf8.decode(encodedType!);
   }
-
+  // Chever John: type must be nullable.
+  // Thus encodedType must be nullable.
   set type(Uint8List? type) {
     encodedType = type;
   }
@@ -149,7 +152,7 @@ class NDEFRecord {
     }
     return tnfString[flags.TNF] + decodedType!;
   }
-
+  // hint: "return id == null ? ... " says that 'id' field must be nullable.
   /// Hex String of id, return "(empty)" when the id bytes is null
   String get idString {
     return id == null ? "(empty)" : id!.toHexString();
@@ -185,7 +188,7 @@ class NDEFRecord {
     return str;
   }
 
-  late Uint8List? id;
+  Uint8List? id;
   Uint8List? payload;
   late NDEFRecordFlags flags;
 
