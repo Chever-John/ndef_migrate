@@ -6,6 +6,7 @@ import 'package:uuid/uuid.dart';
 import '../ndef.dart';
 
 class _Address {
+  // hint: 'addr' field must be non-nullable.
   late Uint8List addr;
 
   _Address({String? address}) {
@@ -73,6 +74,7 @@ class EPAddress extends _Address {
 enum LEAddressType { public, random }
 
 class LEAddress extends _Address {
+  // hint: 'type' field must be non-nullable.
   late LEAddressType type;
   LEAddress({LEAddressType? type, String? address}) : super(address: address) {
     this.type = type!;
