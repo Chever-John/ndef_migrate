@@ -684,15 +684,15 @@ class EIR {
     data = bytes.sublist(1);
   }
 
-  int get typeNum {
+  int? get typeNum {
     return _typeNum;
   }
 
-  set typeNum(int typeNum) {
+  set typeNum(int? typeNum) {
     if (!numTypeMap.containsKey(typeNum)) {
       throw "EIR type Number $typeNum is not supported";
     }
-    this._typeNum = typeNum;
+    this._typeNum = typeNum!;
   }
 
   String? get typeString {
@@ -803,7 +803,6 @@ class BluetoothEasyPairingRecord extends BluetoothRecord {
   }
 
   List<ServiceClass> get serviceClassList {
-    //var list = new List<ServiceClass>();
     var list = <ServiceClass>[];
     _addServiceClassList(EIRType.Inc16BitUUID, 2, list);
     _addServiceClassList(EIRType.Com16BitUUID, 2, list);
@@ -886,7 +885,6 @@ class BluetoothEasyPairingRecord extends BluetoothRecord {
   }
 
   Uint8List get payload {
-    // var data = new List<int>();
     List<int?> data = <int?>[];
     for (var e in attributes.entries) {
       data.add(e.value.length + 1);
@@ -1046,7 +1044,7 @@ class BluetoothLowEnergyRecord extends BluetoothRecord {
   }
 
   set appearance(String? appearance) {
-    late int index;
+    int? index;
     for (var e in appearanceMap.entries) {
       if (e.value == appearance) {
         index = e.key;

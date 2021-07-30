@@ -61,7 +61,6 @@ class AlternativeCarrierRecord extends WellKnownRecord {
   }
 
   Uint8List get payload {
-    // var payload = new List<int>();
     var payload = <int>[];
     payload.add(carrierPowerStateIndex);
 
@@ -127,7 +126,9 @@ class CollisionResolutionRecord extends WellKnownRecord {
     return str;
   }
 
+
   late int _randomNumber;
+
 
   CollisionResolutionRecord({int? randomNumber}) {
     if (randomNumber != null) {
